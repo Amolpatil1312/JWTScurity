@@ -57,28 +57,33 @@ public class EmployeeController {
 
     @RequestMapping(method = RequestMethod.GET,value = "/both/findAll")
     public ResponseEntity<List<Employee>> findAll(){
+        log.info("Trying to Get all The Data from The Data Base....");
         return ResponseEntity.ok(employeeServiceImpl.findAll());
     }
 
     @RequestMapping(method = RequestMethod.GET,value = "/both/findById/{empId}")
     public ResponseEntity<Optional<Employee>> findById(@PathVariable int empId){
+        log.info("Trying to Find By ID....");
         return ResponseEntity.ok(employeeServiceImpl.findById(empId));
     }
 
     @RequestMapping(value = "/both/findByName/{empName}",method =RequestMethod.GET )
     public ResponseEntity<List<Employee>> findByName(@PathVariable String empName){
+        log.info("Trying to Get Data By ID");
         return ResponseEntity.ok(employeeServiceImpl.findByName(empName));
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value = "/admin/deleteById/{empId}")
     public ResponseEntity<String> deleteById(@PathVariable int empId){
         employeeServiceImpl.deleteById(empId);
+        log.info("Trying to Delete The Data By providing ID...");
         return ResponseEntity.ok("Employee Data Deleted Successfully");
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value = "/admin/deleteAll")
     public ResponseEntity<String> deleteAll(){
         employeeServiceImpl.deleteAll();
+        log.info("Trying to Delete All The Data..");
         return ResponseEntity.ok("All Data from the DataBase deleted Successfully...");
     }
 
